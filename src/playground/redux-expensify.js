@@ -1,14 +1,5 @@
 import { createStore, combineReducers } from 'redux';
 
-// add expense
-// remove expense
-// edit expense
-// set text filter
-// sort by date
-// sort by amount
-// set start date
-// set end date
-
 const expensesReducerDefaultState = [];
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch (action.type) {
