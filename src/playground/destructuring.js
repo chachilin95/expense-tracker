@@ -1,3 +1,7 @@
+// ==========================================================================
+// ==========================================================================
+// Object Destructuring
+
 const person = {
     name: 'Alejandro',
     age: 24,
@@ -27,3 +31,19 @@ const book = {
 
 const { name: publisherName = 'Self-Published'} = book.publisher;
 console.log(publisherName);
+
+// ==========================================================================
+// ==========================================================================
+// Array Destructuring
+
+const address = ['1234 Dude Road', 'MyTown', 'MyState', '12345'];
+const [, town = 'Dallas', state = 'Texas', ] = address;
+
+console.log(`You are in ${town}, ${state}`);
+
+// == CHALLENGE == //
+
+const item = ['coffee', '$2', '$2.50', '$2.75'];
+const [thing, , medium, ] = item;
+
+console.log(`A medium ${thing} costs ${medium}`);
