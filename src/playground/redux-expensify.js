@@ -1,5 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import uuid from 'uuid';
+import { createBrotliDecompress } from 'zlib';
 
 const addExpense = (
     { 
@@ -103,6 +104,12 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
         const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
 
         return startDateMatch && endDateMatch && textMatch;
+    }).sort((e1, e2) => {
+        if (sortBy === 'date') {
+            return e1.createdAt < e2.createdAt ? 1 : -1;
+        } else if (sortBy === 'amount') {
+            return e1.amount < e2.amount ? 1 : -1;
+        }
     });
 };
 
@@ -117,8 +124,8 @@ store.subscribe(() => {
     console.log(visibleExpenses);
 })
 
-const e1 = store.dispatch(addExpense({ description: 'Rent', amount: 10000, createdAt: 1000 }));
-const e2 = store.dispatch(addExpense({ description: 'Coffee', amount: 25, createdAt: -1000 }));
+const e1 = store.dispatch(addExpense({ description: 'Rent', amount: 1, createdAt: -21000 }));
+const e2 = store.dispatch(addExpense({ description: 'Coffee', amount: 2, createdAt: -1000 }));
 
 // store.dispatch(removeExpense({ id: e1.expense.id }));
 
@@ -127,10 +134,10 @@ const e2 = store.dispatch(addExpense({ description: 'Coffee', amount: 25, create
 // store.dispatch(setTextFilter('Rent'));
 // store.dispatch(setTextFilter(''));
 
-// store.dispatch(sortByAmount());
+store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
 
-store.dispatch(setStartDate(999));
+// store.dispatch(setStartDate(999));
 // store.dispatch(setEndDate(999));
 // store.dispatch(setStartDate());
 // store.dispatch(setEndDate());
