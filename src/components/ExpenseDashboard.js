@@ -1,10 +1,11 @@
 import React from 'react';
+import ExpenseList from './ExpenseList';
 
 export default class ExpenseDashboard extends React.Component {
     render() {
         return (
             <div>
-                This is the Expense Dashboard
+                <ExpenseList/>
             </div>
         );
     }
