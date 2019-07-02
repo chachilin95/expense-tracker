@@ -19,14 +19,15 @@ store.dispatch(addExpense({
 store.dispatch(addExpense({
     description: 'gas bill',
     note: 'too damn stinky',
-    amount: 70000
+    amount: 70000,
+    createdAt: 1000
 }));
 
-store.dispatch(setTextFilter('water'));
-
-setTimeout(() => {
-    store.dispatch(setTextFilter('bill'));
-}, 3000);
+store.dispatch(addExpense({
+    description: 'rent',
+    note: 'too damn wet',
+    amount: 109500
+}));
 
 const jsx = (
     <Provider store={store}>
