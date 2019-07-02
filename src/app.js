@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import AppRouter from './routers/AppRouter';
 import { addExpense } from './actions/expenses';
+import { setTextFilter } from './actions/filters';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
@@ -20,6 +21,12 @@ store.dispatch(addExpense({
     note: 'too damn stinky',
     amount: 70000
 }));
+
+store.dispatch(setTextFilter('water'));
+
+setTimeout(() => {
+    store.dispatch(setTextFilter('bill'));
+}, 3000);
 
 const jsx = (
     <Provider store={store}>
