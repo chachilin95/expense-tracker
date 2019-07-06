@@ -5,10 +5,15 @@ import ExpenseListItem from './ExpenseListItem';
 import ExpenseListFilters from './ExpenseListFilters';
 import selectExpenses from '../selectors/expenses';
 
-const ExpenseList = (props) => (
+export const ExpenseList = (props) => (
     <div>
-        <ExpenseListFilters/>
-        {props.expenses.map((expense) => <ExpenseListItem key={expense.id} {...expense}/>)}
+        {
+            props.expenses.length === 0 ? (
+                <p>No expenses.</p>
+            ) : (
+                props.expenses.map((expense) => <ExpenseListItem key={expense.id} {...expense}/>)
+            )
+        }
     </div>
 );
 
