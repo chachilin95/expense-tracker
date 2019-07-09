@@ -4,12 +4,14 @@ const app = express();
 const path = require('path');
 const publicPath = path.join(__dirname, '..', 'public');
 
+const port = process.env.PORT || 3000;
+
 app.use(express.static(publicPath));
 
 app.get('*', (_request, response) => {
     response.sendFile(path.join(publicPath, 'index.html'));
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('server is running');
 });
