@@ -3,7 +3,7 @@
 exports[`Should render ExpenseList with expenses 1`] = `
 <div>
   <Component
-    amount={1}
+    amount={10000}
     createdAt={0}
     description="gum"
     id={1}
@@ -11,7 +11,7 @@ exports[`Should render ExpenseList with expenses 1`] = `
     note=""
   />
   <Component
-    amount={0}
+    amount={9500}
     createdAt={-345600000}
     description="rent"
     id={2}
@@ -19,7 +19,7 @@ exports[`Should render ExpenseList with expenses 1`] = `
     note=""
   />
   <Component
-    amount={-1}
+    amount={108000}
     createdAt={345600000}
     description="coffee"
     id={3}
