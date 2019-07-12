@@ -12,7 +12,6 @@ const config = {
 
 firebase.initializeApp(config);
 
-firebase.database().ref().set({
-    name: 'Alejandro Figueroa',
-    age: 26
-});
+const database = firebase.database();
+
+export { firebase, database as default };
