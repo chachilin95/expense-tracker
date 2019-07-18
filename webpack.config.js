@@ -15,29 +15,37 @@ module.exports = (env) => {
         module: {
             rules: [
                 {
-                    loader: 'babel-loader',
                     test: /\.js$/, // matches all *.js files
-                    exclude: /node_modules/ //do this to prevent trying to build everything inside of this
+                    exclude: /node_modules/, //do this to prevent trying to build everything inside of this
+                    use : {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                "@babel/preset-env", 
+                                "@babel/preset-react"
+                            ],
+                            plugins: [
+                                "@babel/plugin-proposal-class-properties",
+                                "@babel/plugin-proposal-object-rest-spread"
+                            ]
+                        }
+                    }
                 },
                 {
                     test: /\.s?css$/, // matches all *.css & *.scss files
-                    use: [
-                        {
-                            loader: MiniCssExtractPlugin.loader
-                        },
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: true
-                            }
+                    use: [{
+                        loader: MiniCssExtractPlugin.loader
+                    }, {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
                         }
-                    ]
+                    },{
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }]
                 }
             ]
         },
