@@ -5,11 +5,11 @@ import { AddExpense } from '../../components/AddExpense';
 import expenses from '../fixtures/expenses';
 
 // example of reusing spies and wrappers
-let addExpenseSpy, historySpy, wrapper;
+let startAddExpenseSpy, historySpy, wrapper;
 beforeEach(() => {
-    addExpenseSpy = jest.fn();
+    startAddExpenseSpy = jest.fn();
     historySpy = { push: jest.fn() };
-    wrapper = shallow(<AddExpense addExpense={addExpenseSpy} history={historySpy}/>);
+    wrapper = shallow(<AddExpense startAddExpense={startAddExpenseSpy} history={historySpy}/>);
 });
 
 test('Should render AddExpense correctly', () => {
@@ -19,5 +19,5 @@ test('Should render AddExpense correctly', () => {
 test('Should handle onSubmit', () => {
     wrapper.find('ExpenseForm').prop('onSubmit')(expenses[1]);
     expect(historySpy.push).toHaveBeenLastCalledWith('/');
-    expect(addExpenseSpy).toHaveBeenLastCalledWith(expenses[1]);
+    expect(startAddExpenseSpy).toHaveBeenLastCalledWith(expenses[1]);
 });

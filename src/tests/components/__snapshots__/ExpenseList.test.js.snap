@@ -2,7 +2,7 @@
 
 exports[`Should render ExpenseList with expenses 1`] = `
 <div>
-  <Component
+  <_default
     amount={10000}
     createdAt={0}
     description="gum"
@@ -10,7 +10,7 @@ exports[`Should render ExpenseList with expenses 1`] = `
     key="1"
     note=""
   />
-  <Component
+  <_default
     amount={9500}
     createdAt={-345600000}
     description="rent"
@@ -18,7 +18,7 @@ exports[`Should render ExpenseList with expenses 1`] = `
     key="2"
     note=""
   />
-  <Component
+  <_default
     amount={108000}
     createdAt={345600000}
     description="coffee"
