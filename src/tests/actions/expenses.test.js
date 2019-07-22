@@ -61,7 +61,7 @@ test('Should add expense to database and store', (done) => {
     });
 });
 
-test('Should add expense with defaults to database and store', () => {
+test('Should add expense with defaults to database and store', (done) => {
     const store = createMockStore({})
     const expenseDefaults = {
         description: '', 
@@ -87,17 +87,3 @@ test('Should add expense with defaults to database and store', () => {
         done();
     })
 });
-
-// test ('Should setup add expense action object (no data)', () => {
-//     const action = addExpense();
-//     expect(action).toEqual({
-//         type: 'ADD_EXPENSE',
-//         expense: {
-//             id: expect.any(String),
-//             description: '',
-//             note: '',
-//             amount: 0,
-//             createdAt: 0
-//         }
-//     });
-// });
