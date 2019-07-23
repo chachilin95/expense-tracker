@@ -16,11 +16,12 @@ export const startAddExpense = (expenseData = {}) => {
 
         const expense = { description, note, amount, createdAt };
         
+        // add expense to firebase
         return database.ref('expenses').push(expense).then((ref) => {
             dispatch(addExpense({
                 id: ref.key,
                 ...expense
-            }))
+            }));
         }).catch((e) => {
             console.log('error:', e);
         });
@@ -43,4 +44,20 @@ export const setExpenses = (expenses) => ({
     expenses
 });
 
-// export const startSetExpenses;
+export const startSetExpenses = () => {
+    return (dispatch) => {
+        
+        // get all expenses from firebase
+        return database.ref('expenses').once('value').then((snapshot) => {
+            const expenses = [];
+            snapshot.forEach((childSnapshot) => {
+                expenses.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+
+            dispatch(setExpenses(expenses));
+        });
+    };
+};
