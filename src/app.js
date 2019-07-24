@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-import AppRouter, { history } from './routers/AppRouter';
-
 import {firebase} from './firebase/firebase';
 
+import configureStore from './store/configureStore';
+import AppRouter, { history } from './routers/AppRouter';
+import { login, logout } from './actions/auth';
 import { startSetExpenses } from './actions/expenses';
 
 import 'normalize.css/normalize.css';
@@ -33,6 +33,8 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+        console.log('logged in');
+        store.dispatch(login(user.uid));
         store.dispatch(startSetExpenses()).then(() => {
             renderApp();
             if (history.location.pathname === '/') {
@@ -40,6 +42,8 @@ firebase.auth().onAuthStateChanged((user) => {
             }
         });        
     } else {
+        console.log('logged out');
+        store.dispatch(logout());
         renderApp();
         history.push('/');
     }
