@@ -13,7 +13,7 @@ beforeEach(() => {
         <EditExpense 
             expense={expenses[2]} 
             editExpense={editExpenseSpy} 
-            removeExpense={removeExpenseSpy} 
+            startRemoveExpense={removeExpenseSpy} 
             history={historySpy}>
         </EditExpense>)
 });

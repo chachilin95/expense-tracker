@@ -23,7 +23,7 @@ export const startAddExpense = (expenseData = {}) => {
                 ...expense
             }));
         }).catch((e) => {
-            console.log('error:', e);
+            console.log('startAddExpense Error:', e);
         });
     };
 };
@@ -32,6 +32,19 @@ export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
 });
+
+export const startRemoveExpense = ({ id } = {}) => {
+    return (dispatch) => {
+
+        return database.ref(`expenses/${id}`)
+            .remove()
+            .then(() => {
+                dispatch(removeExpense({ id }));
+            }).catch((e) => {
+                console.log('startRemoveExpense Error:', e);
+            });
+    };
+};
 
 export const editExpense = (id, updates) => ({
     type: 'EDIT_EXPENSE',
@@ -48,16 +61,20 @@ export const startSetExpenses = () => {
     return (dispatch) => {
         
         // get all expenses from firebase
-        return database.ref('expenses').once('value').then((snapshot) => {
-            const expenses = [];
-            snapshot.forEach((childSnapshot) => {
-                expenses.push({
-                    id: childSnapshot.key,
-                    ...childSnapshot.val()
+        return database.ref('expenses')
+            .once('value')
+            .then((snapshot) => {
+                const expenses = [];
+                snapshot.forEach((childSnapshot) => {
+                    expenses.push({
+                        id: childSnapshot.key,
+                        ...childSnapshot.val()
+                    });
                 });
-            });
 
-            dispatch(setExpenses(expenses));
-        });
+                dispatch(setExpenses(expenses));
+            }).catch((e) => {
+                console.log('startSetExpenses Error:', e);
+            });
     };
 };
