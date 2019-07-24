@@ -2,7 +2,7 @@
   "name": "expensify-app",
   "version": "1.0.0",
   "description": "ReactJS app to track a user's expenses",
-  "repository" : {
+  "repository": {
     "type": "git",
     "url": "git@github.com:chachilin95/expense-tracker.git"
   },
