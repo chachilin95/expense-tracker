@@ -3,7 +3,7 @@ import DotEnv from 'dotenv';
 import Enzyme from 'enzyme';
 
 DotEnv.config({ 
-    path: '.env.test'
+    path: '.env.test.local'
 });
 
 Enzyme.configure({
