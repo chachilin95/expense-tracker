@@ -13,6 +13,7 @@ export default class ExpenseForm extends React.Component {
             amount: props.expense ? (props.expense.amount / 100).toString() : '',
             createdAt: props.expense ? moment(props.expense.createdAt): moment(),
             calendarFocused: false,
+            editMode: this.props.inEditMode,
             error: ''
         };
     }
@@ -92,7 +93,7 @@ export default class ExpenseForm extends React.Component {
                         value={this.state.note}
                         onChange={this.onNoteChange}
                         name='note'/>
-                    <button>Add Expense</button>
+                    <button>{this.props.inEditMode ? "Edit" : "Add"} Expense</button>
                 </form>                
             </div>
         );

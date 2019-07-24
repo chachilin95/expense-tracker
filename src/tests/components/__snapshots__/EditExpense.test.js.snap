@@ -12,6 +12,7 @@ exports[`Should render EditExpense correctly 1`] = `
         "note": "",
       }
     }
+    inEditMode={true}
     onSubmit={[Function]}
   />
   <button

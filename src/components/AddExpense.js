@@ -15,7 +15,7 @@ export class AddExpense extends React.Component {
         return (
             <div>
                 <h1>Add Expense</h1>
-                <ExpenseForm onSubmit={this.onSubmit}/>
+                <ExpenseForm inEditMode={false} onSubmit={this.onSubmit}/>
             </div>
         );
     }
