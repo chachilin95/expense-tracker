@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should render NotFound with expense 1`] = `
+exports[`Should render NotFound page 1`] = `
 <div>
   404 - 
   <Link
