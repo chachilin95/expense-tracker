@@ -7,8 +7,8 @@ export default class ExpenseDashboard extends React.Component {
     render() {
         return (
             <div>
-                <ExpenseListFilters/>
                 <ExpensesSummary/>
+                <ExpenseListFilters/>
                 <ExpenseList/>
             </div>
         );
