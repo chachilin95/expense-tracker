@@ -1,16 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
+import ConfirmationModal from './Modal';
 
 export class EditExpense extends React.Component {
+
+    state = {
+        seekingConfirmation: false
+    };
 
     onSubmit = (expense) => {
         this.props.startEditExpense(this.props.expense.id, expense);
         this.props.history.push('/');
     };
 
-    onClick = () => {
+    seekConfirmation = () => {
+        this.setState({ seekingConfirmation: true });
+    };
+
+    cancelConfirmation = () => {
+        this.setState({ seekingConfirmation: false });
+    };
+
+    handleRemoveExpense = () => {
         this.props.startRemoveExpense({ id: this.props.expense.id });
         this.props.history.push('/');
     };
@@ -24,13 +38,20 @@ export class EditExpense extends React.Component {
                     </div>
                 </div>
                 <div className='content-container'>
-                    <ExpenseForm expense={this.props.expense} onSubmit={this.onSubmit}/>
-                    <button className='button button--critical' onClick={this.onClick}>Remove Expense</button>
+                    <ExpenseForm expense={this.props.expense} onSubmit={this.onSubmit} />
+                    <button
+                        className='button button--critical'
+                        onClick={this.seekConfirmation}>
+                        Remove Expense
+                    </button>
                 </div>
+                <ConfirmationModal
+                    seekingConfirmation={this.state.seekingConfirmation}
+                    handleRemoveExpense={this.handleRemoveExpense}
+                    cancelConfirmation={this.cancelConfirmation} />
             </div>
         );
     }
-
 }
 
 const mapStateToProps = (state, props) => ({
